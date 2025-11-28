@@ -20,9 +20,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
-    <!-- Full name / Username -->
+    <!-- First name -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutName"
+        android:id="@+id/textInputLayoutFirstName"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -34,16 +34,39 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText_Name"
+            android:id="@+id/editText_FirstName"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:hint="Full name"
+            android:hint="First name"
             android:inputType="textPersonName"
             android:textColor="?attr/colorOnSurface"
             android:textColorHint="?attr/colorOnSurface" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Email -->
+    <!-- Last name -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutLastName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="?attr/colorPrimary"
+        app:hintTextColor="?attr/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutFirstName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_LastName"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Last name"
+            android:inputType="textPersonName"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurface" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Email (Account) -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutRegisterEmail"
         android:layout_width="300dp"
@@ -52,7 +75,7 @@
         app:boxBackgroundMode="outline"
         app:boxStrokeColor="?attr/colorPrimary"
         app:hintTextColor="?attr/colorPrimary"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutName"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutLastName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -116,6 +139,29 @@
             android:textColorHint="?attr/colorOnSurface" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Image URL (optional) -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutImageURL"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="?attr/colorPrimary"
+        app:hintTextColor="?attr/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutConfirmPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_ImageURL"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Image URL (optional)"
+            android:inputType="textUri"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurface" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <!-- Register button -->
     <Button
         android:id="@+id/button_Register"
@@ -126,7 +172,7 @@
         android:text="Register"
         android:textColor="?attr/colorOnPrimary"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutImageURL"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -1,0 +1,58 @@
+package com.example.exercise1_team.network_mhuyy;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+public class ApiClient_mhuyy {
+
+    // CHÚ Ý: thay URL phù hợp với môi trường
+    // - Android AVD (default): "http://10.0.2.2:3000/"
+    // - Genymotion: "http://10.0.3.2:3000/"
+    // - Device thật: "http://<YOUR_PC_IP>:3000/"
+    public static final String BASE_URL = "https://midtermhehe.azurewebsites.net/";
+
+    private static Retrofit retrofit = null;
+
+    public static ApiService_mhuyy getApiService() {
+        if (retrofit == null) {
+            // Logging interceptor
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            // Interceptor để add header chung (nếu cần)
+            Interceptor headerInterceptor = new Interceptor() {
+                @Override
+                public Response intercept(Chain chain) throws IOException {
+                    Request original = chain.request();
+                    Request.Builder requestBuilder = original.newBuilder()
+                            .header("Accept", "application/json")
+                            .method(original.method(), original.body());
+                    Request request = requestBuilder.build();
+                    return chain.proceed(request);
+                }
+            };
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(logging)
+                    .addInterceptor(headerInterceptor)
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(30, TimeUnit.SECONDS)
+                    .build();
+
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit.create(ApiService_mhuyy.class);
+    }
+}

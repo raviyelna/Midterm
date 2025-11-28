@@ -20,6 +20,7 @@
 
         <!-- LOGIN -->
         <activity
+            android:name=".nhk.ProductGridActivity"
             android:name=".LoginActivity"
             android:exported="false" />
 

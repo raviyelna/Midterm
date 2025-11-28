@@ -12,10 +12,10 @@ import com.example.exercise1_team.RegisterRequest;
 
 public interface ApiService {
 
-    @POST("api/auth/login")
+    @POST("api.php?action=login")
     Call<LoginResponse> login(@Body com.example.exercise1_team.LoginRequest req);
 
-    @POST("api/auth/register")
+    @POST("api.php?action=register")
     Call<DefaultResponse> register(@Body RegisterRequest req);
 
 

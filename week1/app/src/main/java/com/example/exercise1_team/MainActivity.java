@@ -6,14 +6,16 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnStart = findViewById(R.id.btnStart);
+    private Button btnStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Gọi backend tách riêng
+        btnStart = findViewById(R.id.btnStart);
+
+        // Gọi handler tách riêng
         new StartButtonHandler(this, btnStart);
     }
 }

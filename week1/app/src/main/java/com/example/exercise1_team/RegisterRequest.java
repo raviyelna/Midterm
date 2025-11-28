@@ -1,13 +1,31 @@
 package com.example.exercise1_team;
 
-public class RegisterRequest {
-    String username;
-    String password;
-    String email; // Thêm các trường cần thiết cho việc đăng ký
+import com.google.gson.annotations.SerializedName;
 
-    public RegisterRequest(String username, String password, String email) {
-        this.username = username;
+public class RegisterRequest {
+
+    @SerializedName("account")
+    private String account;
+
+    @SerializedName("password")
+    private String password;
+
+    @SerializedName("firstName")
+    private String firstName;
+
+    @SerializedName("lastName")
+    private String lastName;
+
+    @SerializedName("imageUrl")
+    private String imageUrl;
+
+    public RegisterRequest(String account, String password, String firstName, String lastName, String imageUrl) {
+        this.account = account;
         this.password = password;
-        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.imageUrl = imageUrl;
     }
+
+    // getters (nếu cần)
 }

@@ -13,9 +13,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
+//23162037 Le Nhut Quoc Khang
+
 public class RegisterActivity extends AppCompatActivity {
 
-    TextInputEditText editName, editEmail, editPassword, editConfirm;
+    TextInputEditText editFirstName, editLastName, editEmail, editPassword, editConfirm, editImageURL;
     Button btnRegister;
     TextView textBackLogin;
 
@@ -24,10 +27,14 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        editName = findViewById(R.id.editText_Name);
+        // Ánh xạ view (phù hợp layout bạn đã cập nhật)
+        editFirstName = findViewById(R.id.editText_FirstName);
+        editLastName = findViewById(R.id.editText_LastName);
         editEmail = findViewById(R.id.editText_RegisterEmail);
         editPassword = findViewById(R.id.editText_RegisterPassword);
         editConfirm = findViewById(R.id.editText_ConfirmPassword);
+        editImageURL = findViewById(R.id.editText_ImageURL);
+
         btnRegister = findViewById(R.id.button_Register);
         textBackLogin = findViewById(R.id.textView_BackToLogin);
 
@@ -36,12 +43,16 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void doRegister() {
-        String fullName = editName.getText().toString().trim();
-        String email = editEmail.getText().toString().trim();
+        String firstName = editFirstName.getText().toString().trim();
+        String lastName = editLastName.getText().toString().trim();
+        String account = editEmail.getText().toString().trim(); // dùng làm Account
         String pass = editPassword.getText().toString().trim();
         String confirm = editConfirm.getText().toString().trim();
+        String imageUrl = editImageURL.getText().toString().trim(); // optional
 
-        if (fullName.isEmpty() || email.isEmpty() || pass.isEmpty() || confirm.isEmpty()) {
+        // Validate
+        if (firstName.isEmpty() || lastName.isEmpty() || account.isEmpty()
+                || pass.isEmpty() || confirm.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -51,11 +62,13 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // Tạo request (class nằm trong cùng package)
+        // Tạo request phù hợp với DB (Account, Password, FirstName, LastName, ImageURL)
         RegisterRequest req = new RegisterRequest(
-                fullName, // 1. username
-                pass,     // 2. password
-                email     // 3. email
+                account,
+                pass,
+                firstName,
+                lastName,
+                imageUrl
         );
 
         ApiService api = ApiClient.getClient().create(ApiService.class);

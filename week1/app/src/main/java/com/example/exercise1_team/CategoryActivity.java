@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,8 +61,21 @@ public class CategoryActivity extends AppCompatActivity {
                     CategoryResponse body = response.body();
 
                     if (body.isSuccess() && body.getData() != null) {
+                        // Lọc trùng theo tên category
+                        List<Category> uniqueCategories = new ArrayList<>();
+                        Set<String> seenNames = new HashSet<>();
+                        for (Category c : body.getData()) {
+                            if (c == null) continue;
+                            String catName = c.getCategory();
+                            if (catName == null) continue;
+                            if (!seenNames.contains(catName)) {
+                                seenNames.add(catName);
+                                uniqueCategories.add(c);
+                            }
+                        }
+
                         categories.clear();
-                        categories.addAll(body.getData());
+                        categories.addAll(uniqueCategories);
                         categoryAdapter.notifyDataSetChanged();
                     } else {
                         Log.e("MainActivity", "API success=false hoặc data null");

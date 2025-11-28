@@ -1,6 +1,11 @@
 package com.example.exercise1_team;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +25,28 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        ImageView avatar = findViewById(R.id.header_avatar);
+        TextView greeting = findViewById(R.id.header_greeting);
+        TextView name = findViewById(R.id.header_name);
+        TextView email = findViewById(R.id.header_email);
+        Button profileButton = findViewById(R.id.button_open_profile);
+        Button cartButton = findViewById(R.id.button_view_cart);
+        Button orderHistoryButton = findViewById(R.id.button_order_history);
+
+        UserHeader.saveUserInfo(this, "demo.user@example.com", "Demo User");
+        UserHeader.displayUserInfo(this, avatar, name, email, greeting);
+
+        profileButton.setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class))
+        );
+
+        cartButton.setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, CartActivity.class))
+        );
+
+        orderHistoryButton.setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, OrderHistoryActivity.class))
+        );
     }
 }

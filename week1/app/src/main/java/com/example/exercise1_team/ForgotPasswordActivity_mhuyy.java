@@ -69,7 +69,8 @@ public class ForgotPasswordActivity_mhuyy extends AppCompatActivity {
     private void sendForgotRequest(final String email) {
         progressDialog.show();
         ForgotPasswordRequest_mhuyy req = new ForgotPasswordRequest_mhuyy(email);
-        apiService.forgotPassword(req).enqueue(new Callback<GenericResponse_mhuyy>() {
+        // Gọi với action=forgot
+        apiService.forgotPassword("forgot", req).enqueue(new Callback<GenericResponse_mhuyy>() {
             @Override
             public void onResponse(Call<GenericResponse_mhuyy> call, Response<GenericResponse_mhuyy> response) {
                 progressDialog.dismiss();

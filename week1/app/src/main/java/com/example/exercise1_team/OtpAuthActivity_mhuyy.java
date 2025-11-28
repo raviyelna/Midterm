@@ -82,7 +82,8 @@ public class OtpAuthActivity_mhuyy extends AppCompatActivity {
     private void verifyOtp(final String email, String otp) {
         progressDialog.show();
         VerifyOtpRequest_mhuyy req = new VerifyOtpRequest_mhuyy(email, otp);
-        apiService.verifyOtp(req).enqueue(new Callback<VerifyOtpResponse_mhuyy>() {
+        // Gọi với action=verify-otp
+        apiService.verifyOtp("verify-otp", req).enqueue(new Callback<VerifyOtpResponse_mhuyy>() {
             @Override
             public void onResponse(Call<VerifyOtpResponse_mhuyy> call, Response<VerifyOtpResponse_mhuyy> response) {
                 progressDialog.dismiss();
@@ -122,7 +123,8 @@ public class OtpAuthActivity_mhuyy extends AppCompatActivity {
             return;
         }
         progressDialog.show();
-        apiService.forgotPassword(new ForgotPasswordRequest_mhuyy(email)).enqueue(new Callback<GenericResponse_mhuyy>() {
+        // Gọi với action=forgot để resend
+        apiService.forgotPassword("forgot", new ForgotPasswordRequest_mhuyy(email)).enqueue(new Callback<GenericResponse_mhuyy>() {
             @Override
             public void onResponse(Call<GenericResponse_mhuyy> call, Response<GenericResponse_mhuyy> response) {
                 progressDialog.dismiss();

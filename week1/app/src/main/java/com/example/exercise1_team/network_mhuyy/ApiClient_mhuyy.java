@@ -12,10 +12,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 public class ApiClient_mhuyy {
 
-    // CHÚ Ý: thay URL phù hợp với môi trường
-    // - Android AVD (default): "http://10.0.2.2:3000/"
-    // - Genymotion: "http://10.0.3.2:3000/"
-    // - Device thật: "http://<YOUR_PC_IP>:3000/"
     public static final String BASE_URL = "https://midtermhehe.azurewebsites.net/";
 
     private static Retrofit retrofit = null;

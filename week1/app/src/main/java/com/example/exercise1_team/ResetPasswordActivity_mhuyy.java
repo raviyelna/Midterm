@@ -82,7 +82,8 @@ public class ResetPasswordActivity_mhuyy extends AppCompatActivity {
         }
         progressDialog.show();
         ResetPasswordRequest_mhuyy req = new ResetPasswordRequest_mhuyy(resetToken, newPassword);
-        apiService.resetPassword(req).enqueue(new Callback<GenericResponse_mhuyy>() {
+        // Gọi với action=reset-password
+        apiService.resetPassword("reset-password", req).enqueue(new Callback<GenericResponse_mhuyy>() {
             @Override
             public void onResponse(Call<GenericResponse_mhuyy> call, Response<GenericResponse_mhuyy> response) {
                 progressDialog.dismiss();

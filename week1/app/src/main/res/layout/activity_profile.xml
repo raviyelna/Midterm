@@ -25,7 +25,7 @@
         android:id="@+id/profile_avatar"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="31dp"
         android:src="@drawable/acount_avt"
         android:contentDescription="Avatar người dùng"
         android:background="@android:color/transparent"

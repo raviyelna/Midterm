@@ -20,23 +20,22 @@
 
         <!-- LOGIN -->
         <activity
-            android:name=".nhk.ProductGridActivity"
             android:name=".LoginActivity"
             android:exported="false" />
 
-        <!-- REGISTER -->
+        <!-- PRODUCT GRID -->
         <activity
-            android:name=".RegisterActivity"
+            android:name=".nhk.ProductGridActivity"
             android:exported="false" />
 
-        <!-- MAIN ACTIVITY (LAUNCHER) — PHẢI exported = true -->
+        <!-- MAIN ACTIVITY (LAUNCHER) -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
 
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>

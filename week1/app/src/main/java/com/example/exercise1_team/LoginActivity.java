@@ -64,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    LoginResponse res = response.body();
                     Toast.makeText(LoginActivity.this, "Login success!", Toast.LENGTH_SHORT).show();
 
                     // nếu server trả token, lưu vào SharedPreferences

@@ -19,6 +19,10 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText editEmail, editPassword;
     Button btnLogin;
     TextView textRegister;
+<<<<<<< Updated upstream
+=======
+    TextView textForgotPassword;
+>>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,10 @@ public class LoginActivity extends AppCompatActivity {
         editPassword = findViewById(R.id.editText_TextPassword);
         btnLogin = findViewById(R.id.button_Login);
         textRegister = findViewById(R.id.textView_Register);
+<<<<<<< Updated upstream
+=======
+        textForgotPassword = findViewById(R.id.textView_ForgotPassword);
+>>>>>>> Stashed changes
 
         btnLogin.setOnClickListener(v -> doLogin());
 
@@ -38,7 +46,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void doLogin() {
-        String account = editEmail.getText().toString().trim();
+        // account chính là username bạn muốn hiển thị
+        String account  = editEmail.getText().toString().trim();
         String password = editPassword.getText().toString().trim();
 
         if (account.isEmpty() || password.isEmpty()) {
@@ -60,10 +69,15 @@ public class LoginActivity extends AppCompatActivity {
 
                     // nếu server trả token, lưu vào SharedPreferences
                     // getSharedPreferences("App", MODE_PRIVATE).edit().putString("token", res.token).apply();
+                    // ❗❗ DÙNG LUÔN ACCOUNT ĐÃ LOGIN LÀM "FULL_NAME"
+                    String fullName = account;
 
                     // chuyển sang MainActivity (hoặc HomeActivity)
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    Intent intent = new Intent(LoginActivity.this, CategoryActivity.class);
+                    intent.putExtra("FULL_NAME", fullName);   // truyền sang CategoryActivity
+                    startActivity(intent);
                     finish();
+
                 } else {
                     Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT).show();
                 }
